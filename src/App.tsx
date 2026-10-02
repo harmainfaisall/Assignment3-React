@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -19,26 +21,26 @@ function App() {
   }, [sets]);
 
   return (
-    <div className="min-h-screen bg-[#f1f5f9] flex items-center justify-center p-6">
+    <div className="min-h-screen w-full bg-[#f1f5f9] flex items-center justify-center px-4 py-8 sm:px-6">
 
-      <Card className="w-full max-w-md overflow-hidden border-0 shadow-2xl">
+      <Card className="w-full max-w-md overflow-hidden border border-slate-200 bg-white shadow-2xl">
 
         {/* Header */}
         <CardHeader className="bg-[#18181b] px-6 py-7 text-white">
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
 
             <div>
               <p className="text-xs uppercase tracking-[3px] text-orange-400">
                 Fitness
               </p>
 
-              <CardTitle className="mt-2 text-3xl font-bold">
+              <CardTitle className="mt-2 text-2xl font-bold text-white sm:text-3xl">
                 Workout Tracker
               </CardTitle>
             </div>
 
-            <div className="text-4xl">
+            <div className="text-3xl sm:text-4xl">
               🏋️
             </div>
 
@@ -46,7 +48,7 @@ function App() {
 
         </CardHeader>
 
-        <CardContent className="space-y-5 bg-white p-6">
+        <CardContent className="space-y-5 bg-white p-5 sm:p-6">
 
           {/* Exercise Input */}
           <div>
@@ -57,7 +59,7 @@ function App() {
             <Input
               ref={exerciseInput}
               placeholder="e.g. Squats, Push Ups"
-              className="mt-2 h-11"
+              className="mt-2 h-11 border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-orange-500"
             />
           </div>
 
@@ -65,13 +67,13 @@ function App() {
           <Button
             onClick={() => exerciseInput.current?.focus()}
             variant="outline"
-            className="w-full h-10"
+            className="h-10 w-full border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900"
           >
             Focus Exercise Input
           </Button>
 
           {/* Workout Counter */}
-          <div className="relative overflow-hidden rounded-2xl bg-[#18181b] px-6 py-7 text-center">
+          <div className="relative overflow-hidden rounded-2xl bg-[#18181b] px-5 py-7 text-center sm:px-6">
 
             <div className="absolute right-4 top-3 text-5xl opacity-10">
               🏋️
@@ -81,7 +83,7 @@ function App() {
               COMPLETED SETS
             </p>
 
-            <h2 className="mt-2 text-6xl font-bold text-orange-500">
+            <h2 className="mt-2 text-5xl font-bold text-orange-500 sm:text-6xl">
               {sets}
             </h2>
 
@@ -104,7 +106,7 @@ function App() {
           <div className="grid grid-cols-2 gap-3">
 
             <Button
-              onClick={() => setSets(sets + 1)}
+              onClick={() => setSets((prev) => prev + 1)}
               className="h-11 bg-orange-500 text-white hover:bg-orange-600"
             >
               + Complete Set
@@ -114,11 +116,11 @@ function App() {
               disabled={sets === 0}
               onClick={() => {
                 if (sets > 0) {
-                  setSets(sets - 1);
+                  setSets((prev) => prev - 1);
                 }
               }}
               variant="outline"
-              className="h-11"
+              className="h-11 border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900"
             >
               - Remove Set
             </Button>
@@ -129,13 +131,13 @@ function App() {
           <Button
             onClick={() => setSets(0)}
             variant="secondary"
-            className="h-10 w-full"
+            className="h-10 w-full bg-slate-200 text-slate-800 hover:bg-slate-300"
           >
             Reset Workout
           </Button>
 
           {/* Message */}
-          <div className="border-t pt-4 text-center">
+          <div className="border-t border-slate-200 pt-4 text-center">
 
             {sets === 0 && (
               <p className="text-sm font-medium text-slate-500">
@@ -164,3 +166,4 @@ function App() {
 }
 
 export default App;
+
